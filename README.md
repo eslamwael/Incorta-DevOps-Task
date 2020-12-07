@@ -22,7 +22,7 @@ You need to install the following on your Python environment
 psutil : To retrieve information on system utilization
 datetime: To access current timestamp
 ```
-### Requirement 1:
+## Requirement 1:
 - Python script "util.py" to automatically record system resources utilization on a Linux machine using psutil library <https://pypi.org/project/psutil/>  
 
 Exact steps of the script are the following:
@@ -45,3 +45,10 @@ with open(mem_csv, "a", newline='') as fp:
     wr = csv.writer(fp, dialect='excel')
     wr.writerow(mem_csvRow)
 ```
+Output sample for MEM.csv:
+``` 
+2020-12-08 00:35:02.228761,29.0
+2020-12-08 00:36:02.368104,29.7
+```
+## Requirement 2.1:
+Deploy and schedule the "util.py" python script to run every 15 minutes using Ansible configuration management tool.
