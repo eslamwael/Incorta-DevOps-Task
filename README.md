@@ -15,9 +15,12 @@ You need to install the following on your linux distribution ( apt in Ubuntu, yu
 
 ```
 python3
-python3-psutil & psutil : For retrieving information on running processes and system utilization
 ansible
 ```
-
+You need to install the following on your Python environment 
+```
+psutil : To retrieve information on system utilization
+datetime: To access current timestamp
+```
 
 
