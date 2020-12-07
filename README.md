@@ -23,8 +23,25 @@ psutil : To retrieve information on system utilization
 datetime: To access current timestamp
 ```
 ### Requirement 1:
-Python script to automatically record system resources utilization on a Linux machine using psutil library <https://pypi.org/project/psutil/>
+- Python script "util.py" to automatically record system resources utilization on a Linux machine using psutil library <https://pypi.org/project/psutil/>  
 
+Exact steps of the script are the following:
+```
+1- Import necessary libraries ( psutil - datetime - csv )
+2- Get CPU utilization as percentage in the current time.
+3- Append results from "setp 2" in a csv file every time the script is run.
+4- Repeat " Steps 2 & 3 to get free memory & free disk spaces as percentages.
+```
+Example: Getting percentages of used virtual memory in MEM.csv with the corresponding timestamp
+```python
+# psutil.virtual_memory().percent: returns the percentage of used memory
+mem_free_per = round((100 - psutil.virtual_memory().percent),2)
 
+mem_csvRow = [dt.datetime.now(),mem_free_per]
+mem_csv = "/opt/MEM.csv"
 
-
+# Appending results in the csv file
+with open(mem_csv, "a", newline='') as fp:
+    wr = csv.writer(fp, dialect='excel')
+    wr.writerow(mem_csvRow)
+```
