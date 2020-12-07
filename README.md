@@ -1,11 +1,23 @@
 # Incorta-DevOps-Task
-1- It’s required to have a script to automatically record system resources utilization on a Linux machine. We expect to have 3 CSVs files under /opt/ directory. 
-- CPU.csv
-- MEM.csv [Free memory percencetage ]
-- DISK.csv [ Root disk available space percentage ] 
-... Each row should have two columns timestamp and utilization at that time. This should be triggered every 15 minutes. 
 
-2- In the other part we need to use the configuration management tool like Ansible to do the following:
-- Deploy and schedule the above script. 
-- Install some Linux packages passed as parameters. 
-- Install Java OpenJDK 11.
+- Track resource utilization over time. It’s required to have a script to automatically record system resources utilization on a Linux
+machine. We expect to have 3 CSVs  for ( CPU - Memory Usage - Disk space usage ) files under /opt/ directory.
+
+- Using Ansible to do the following ( Deploy and schedule the above script - Install some Linux packages passed as parameters - Install Java OpenJDK 11)
+
+## Getting Started
+
+These tasks are done on a local machine for development and testing using Linux distribution ( Ubuntu or CentOS 7 to match the company's environment )
+
+### Prerequisites
+
+You need to install the following on your linux distribution ( apt in Ubuntu, yum in CentOS )
+
+```
+python3
+python3-psutil & psutil : For retrieving information on running processes and system utilization
+ansible
+```
+
+
+
