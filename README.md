@@ -29,8 +29,8 @@ Exact steps of the script are the following:
 ```
 1- Import necessary libraries ( psutil - datetime - csv )
 2- Get CPU utilization as percentage in the current time.
-3- Append results from "setp 2" in a csv file every time the script is run.
-4- Repeat " Steps 2 & 3 to get free memory & free disk spaces as percentages.
+3- Append results from "Step 2" in a csv file every time the script is run.
+4- Repeat "Steps 2 & 3" to get free memory & free disk spaces as percentages.
 ```
 Example: Getting percentages of used virtual memory in MEM.csv with the corresponding timestamp
 ```python
