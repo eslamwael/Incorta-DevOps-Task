@@ -22,5 +22,9 @@ You need to install the following on your Python environment
 psutil : To retrieve information on system utilization
 datetime: To access current timestamp
 ```
+### Requirement 1:
+Python script to automatically record system resources utilization on a Linux machine using psutil library <https://pypi.org/project/psutil/>
+
+
 
 
