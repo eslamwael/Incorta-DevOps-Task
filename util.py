@@ -5,7 +5,7 @@ import datetime as dt # Retreive current time
 
 ## == CPU Utilization == ##
 # psutil.cpu_percent: return CPU utilization as percentage
-cpu_csvRow = [dt.datetime.now(),psutil.cpu_percent(interval=1, percpu=False) * 100]
+cpu_csvRow = [dt.datetime.now(),psutil.cpu_percent(interval=1, percpu=False)]
 cpu_csv = "/opt/CPU.csv"
 
 # Appending results in the csv file
