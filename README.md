@@ -23,7 +23,7 @@ You need to install the following on your python virtual environment
 psutil : To retrieve information on system utilization
 ```
 ## Requirement 1:
-**Python script *util.py* to automatically record system resources utilization on a Linux machine using psutil library** <https://pypi.org/project/psutil/>  
+**Python script *util.py* to automatically record system resources utilization on a Linux machine using [psutil python package](https://pypi.org/project/psutil/ "psutil python package")
 
 **Exact steps of the script are the following:**
 1. Import necessary libraries ( psutil - datetime - csv )
@@ -52,7 +52,7 @@ Output sample for MEM.csv:
 ## Requirement 2.1:
 **Deploy and schedule the "util.py" python script to run every 15 minutes using Ansible configuration management tool**
 
-### Approach: Create a project specific [Python Virtual Environment](http://www.google.fr/ "Python Virtual Environment "Python Virtual Environment") with only the required python packages. The script is run on the virtual environment, scheduled and deployed using five Ansible playbooks
+### Approach: Create a project specific [Python Virtual Environment](https://docs.python.org/3/tutorial/venv.html "Python Virtual Environment") with only the required python packages. The script is run on the virtual environment, scheduled and deployed using five Ansible playbooks
 
 **Exact steps:**
 
