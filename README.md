@@ -13,15 +13,12 @@ These tasks are done on a local machine for development and testing using Linux 
 As we will see in the second requirement, all the prerequisites will be installed for hosts via Ansible playbooks.
 
 You need to install the following on your linux distribution ( apt in Ubuntu, yum in CentOS )
-```
-python3
-python3-venv
-ansible
-```
+*python3*
+*python3-venv*
+*ansible*
 You need to install the following on your python virtual environment
-```
-psutil : To retrieve information on system utilization
-```
+*psutil : To retrieve information on system utilization*
+
 ## Requirement 1:
 **Python script *util.py* to automatically record system resources utilization on a Linux machine using [psutil python package](https://pypi.org/project/psutil/ "psutil python package")**
 
