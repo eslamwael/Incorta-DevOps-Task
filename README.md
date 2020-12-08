@@ -10,17 +10,17 @@ machine. We expect to have 3 CSVs  for ( CPU - Memory Usage - Disk space usage )
 These tasks are done on a local machine for development and testing using Linux distribution ( Ubuntu 18.04 or CentOS 7 to match the company's environment )
 
 ### Prerequisites
+As we will see in the second requirement, all the prerequisites will be installed for hosts via Ansible playbooks.
 
 You need to install the following on your linux distribution ( apt in Ubuntu, yum in CentOS )
-
 ```
 python3
+python3-venv
 ansible
 ```
-You need to install the following on your Python environment 
+You need to install the following on your python virtual environment
 ```
 psutil : To retrieve information on system utilization
-datetime: To access current timestamp
 ```
 ## Requirement 1:
 **Python script *util.py* to automatically record system resources utilization on a Linux machine using psutil library** <https://pypi.org/project/psutil/>  
@@ -52,3 +52,15 @@ Output sample for MEM.csv:
 ```
 ## Requirement 2.1:
 **Deploy and schedule the "util.py" python script to run every 15 minutes using Ansible configuration management tool**
+
+### Method 1: Create a project specific python virtual environment with only the required python packages. The script is run on the virtual environment, scheduled and deployed using five Ansible playbooks
+
+Exact steps:
+``` 
+1- Install and create a python 3 virtual environment on etc/ansible directory via “setup_venv.yml” playbook.
+2- Install any needed python libraries such as psutil on the virtual environment via “venv_packages.yml” playbook.
+3- Clone the python script from a GitHub repository “acts as a server” to a local directory via “clone_playbook.yml” playbook. 
+4- Start cron scheduler and run the script on the virtual environment every 15 minutes via “schdule_playbook.yml” playbook.
+5- Stop cron scheduler from running the script via “stop_ schedule.yml” playbook if needed.
+```
+
