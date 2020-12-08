@@ -25,13 +25,12 @@ psutil : To retrieve information on system utilization
 ## Requirement 1:
 **Python script *util.py* to automatically record system resources utilization on a Linux machine using psutil library** <https://pypi.org/project/psutil/>  
 
-Exact steps of the script are the following:
-```
-1- Import necessary libraries ( psutil - datetime - csv )
-2- Get CPU utilization as percentage in the current time.
-3- Save and append results from "Step 2" as a csv file in /opt/ directory every time the script is run.
-4- Repeat "Steps 2 & 3" to get free memory & free disk spaces as percentages.
-```
+**Exact steps of the script are the following:**
+1. Import necessary libraries ( psutil - datetime - csv )
+2. Get CPU utilization as percentage in the current time.
+3. Save and append results from "Step 2" as a csv file in /opt/ directory every time the script is run.
+4. Repeat "Steps 2 & 3" to get free memory & free disk spaces as percentages.
+
 Example: Getting percentages of used virtual memory in *MEM.csv* with the corresponding timestamp
 ```python
 # psutil.virtual_memory().percent: returns the percentage of used memory
@@ -55,12 +54,58 @@ Output sample for MEM.csv:
 
 ### Method 1: Create a project specific python virtual environment with only the required python packages. The script is run on the virtual environment, scheduled and deployed using five Ansible playbooks
 
-Exact steps:
-``` 
-1- Install and create a python 3 virtual environment on etc/ansible directory via “setup_venv.yml” playbook.
-2- Install any needed python libraries such as psutil on the virtual environment via “venv_packages.yml” playbook.
-3- Clone the python script from a GitHub repository “acts as a server” to a local directory via “clone_playbook.yml” playbook. 
-4- Start cron scheduler and run the script on the virtual environment every 15 minutes via “schdule_playbook.yml” playbook.
-5- Stop cron scheduler from running the script via “stop_ schedule.yml” playbook if needed.
-```
+**Exact steps:**
+1. Install and create a python 3 virtual environment on etc/ansible directory via “setup_venv.yml” playbook.
+2. Activate the virtual environment using "source env_name/bin/activate" command.
+3. Install any needed python libraries such as psutil on the virtual environment via “venv_packages.yml” playbook.
+4. Clone the python script from a GitHub repository “acts as a server” to a local directory via “clone_playbook.yml” playbook. 
+5. Start cron scheduler and run the script on the virtual environment every 15 minutes via “schdule_playbook.yml” playbook.
+6. Stop cron scheduler from running the script via “stop_ schedule.yml” playbook if needed.
 
+- Install and create a python 3 virtual environment named "py_venv" on etc/ansible directory via "setup_venv.yml" playbook, apt is replaced with yum in case using CentOs 7
+```yaml
+  - name: Install the venv library
+    command: apt install python3-venv
+
+  - name: Create python virtual environment on Ansible directory
+    command: python3 -m venv /etc/ansible/py_venv
+```
+- Activate the virtual the created environment "py_venv" using the command:
+```shell
+source py_venv/bin/activate
+```
+- Install any needed python libraries such as psutil on the installed virtual environment via "venv_packages.yml" playbook
+
+```yaml
+  - name: Install psutil on virtual environment
+    pip:
+      name: psutil
+      virtualenv: /etc/ansible/py_venv
+```
+- Clone the script from a GitHub repoy that acts as a server/master to a local directory via “clone_playbook.yml” playbook
+```yaml
+  - name: Clone python script from Git Repo
+    command: sudo git clone https://github.com/*.git /etc/ansible/playbooks/Python_script/
+```
+- Start cron scheduler then run the script on the virtual environment every 15 minutes via “schdule_script_venv.yml” playbook, cron logs are saved in the /opt directory in case of scheduling errors
+```yaml
+  - name: Start cron scheduler service
+    service:
+      name: cron
+      state: started
+
+  - name: Run script every 15 minutes
+    cron:
+      name: "schedule script"
+      minute: "*/15"
+      job: Python_virtual_env_path script.py >> /opt/cron.log 2>&1
+```
+Note that [Cron Ansible module](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/cron_module.html "Cron Ansible Module")  allows you to create named crontab entries automatically via cron jobs in the playbooks
+
+- Master may need to shut down the scheduler for some or all hosts, so additional playbook is added to stop the cron scheduler from running
+```yaml
+  - name: Stop cron scheduler service
+    service:
+      name: cron
+      state: stopped
+```
