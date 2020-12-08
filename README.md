@@ -55,12 +55,6 @@ Output sample for MEM.csv:
 ### Method 1: Create a project specific python virtual environment with only the required python packages. The script is run on the virtual environment, scheduled and deployed using five Ansible playbooks
 
 **Exact steps:**
-1. Install and create a python 3 virtual environment on etc/ansible directory via “setup_venv.yml” playbook.
-2. Activate the virtual environment using "source env_name/bin/activate" command.
-3. Install any needed python libraries such as psutil on the virtual environment via “venv_packages.yml” playbook.
-4. Clone the python script from a GitHub repository “acts as a server” to a local directory via “clone_playbook.yml” playbook. 
-5. Start cron scheduler and run the script on the virtual environment every 15 minutes via “schdule_playbook.yml” playbook.
-6. Stop cron scheduler from running the script via “stop_ schedule.yml” playbook if needed.
 
 - Install and create a python 3 virtual environment named "py_venv" on etc/ansible directory via "setup_venv.yml" playbook, apt is replaced with yum in case using CentOs 7
 ```yaml
