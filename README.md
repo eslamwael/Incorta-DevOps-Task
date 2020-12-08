@@ -23,7 +23,7 @@ You need to install the following on your python virtual environment
 psutil : To retrieve information on system utilization
 ```
 ## Requirement 1:
-**Python script *util.py* to automatically record system resources utilization on a Linux machine using [psutil python package](https://pypi.org/project/psutil/ "psutil python package")
+**Python script *util.py* to automatically record system resources utilization on a Linux machine using [psutil python package](https://pypi.org/project/psutil/ "psutil python package")**
 
 **Exact steps of the script are the following:**
 1. Import necessary libraries ( psutil - datetime - csv )
@@ -103,3 +103,24 @@ Note that [Cron Ansible module](https://docs.ansible.com/ansible/latest/collecti
       name: cron
       state: stopped
 ```
+
+## Requirement 2.2:
+**Install some Linux packages passed as parameters using Ansible**
+- Use Ansible playbook variables to take linux package name as an argument, then install it on "linux_package.yml" playbook using Ansible built-in packages manager such as [apt module](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/apt_module.html "apt module") in case of Ubuntu or [yum module](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/yum_module.html "yum module") in case of CentOS 
+
+```yaml
+  vars:
+    package: "{{ pkg }}"
+
+  tasks:
+
+  - name: Install Linux Package
+    apt:
+      name: "{{ package }}"
+```
+- Running "linux_package" playbook and taking linux package name "apache2 in this example" as an extra argument
+```shell
+sudo ansible-playbook packages_playbook.yml --extra-vars "pkg=apache2"
+```
+## Requirement 2.3:
+**Install Java OpenJDK 11 using Ansible
