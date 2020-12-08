@@ -12,12 +12,14 @@ These tasks are done on a local machine for development and testing using Linux 
 ### Prerequisites
 As we will see in the second requirement, all the prerequisites will be installed for hosts via Ansible playbooks.
 
-You need to install the following on your linux distribution ( apt in Ubuntu, yum in CentOS )
-*python3*
-*python3-venv*
-*ansible*
-You need to install the following on your python virtual environment
-*psutil : To retrieve information on system utilization*
+Packages on linux distribution:
+
+- *python3*
+- *python3-venv*
+- *ansible*
+
+Python packages on your python virtual environment:
+- *psutil : To retrieve information on system utilization*
 
 ## Requirement 1:
 **Python script *util.py* to automatically record system resources utilization on a Linux machine using [psutil python package](https://pypi.org/project/psutil/ "psutil python package")**
@@ -91,7 +93,11 @@ source py_venv/bin/activate
       minute: "*/15"
       job: Python_virtual_env_path script.py >> /opt/cron.log 2>&1
 ```
-Note that [Cron Ansible module](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/cron_module.html "Cron Ansible Module")  allows you to create named crontab entries automatically via cron jobs in the playbooks
+Note that [Cron Ansible module](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/cron_module.html "Cron Ansible Module")  allows you to create named crontab entries automatically via cron jobs in the playbooks as follows:
+
+```cron
+*/15 * * * * /etc/ansible/py_venv/bin/python3 /etc/ansible/playbooks/Python_script/util.py >> /opt/cron.log 2>&1
+```
 
 - Master may need to shut down the scheduler for some or all hosts, so additional playbook is added to stop the cron scheduler from running
 ```yaml
