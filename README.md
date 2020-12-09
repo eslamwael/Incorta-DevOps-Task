@@ -45,7 +45,7 @@ Packages on linux distribution:
 Python packages on your python virtual environment:
 - *psutil : To retrieve information on system utilization*
 
-Requirement 1 - Record system resources utilization:
+Requirement 1: Record system resources utilization:
 ==============
 **Python script *util.py* to automatically record system resources utilization on a Linux machine using [psutil python package](https://pypi.org/project/psutil/ "psutil python package")**
 
