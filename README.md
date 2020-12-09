@@ -126,6 +126,7 @@ Note that [Cron Ansible module](https://docs.ansible.com/ansible/latest/collecti
 - Use Ansible playbook variables to take linux package name as an argument, then install it on "linux_package.yml" playbook using Ansible built-in packages manager such as [apt module](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/apt_module.html "apt module") in case of Ubuntu or [yum module](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/yum_module.html "yum module") in case of CentOS 
 
 ```yaml
+## linux_package.yml
   vars:
     package: "{{ pkg }}"
 
@@ -142,26 +143,27 @@ sudo ansible-playbook packages_playbook.yml --extra-vars "pkg=apache2"
 ## Requirement 2.3:
 **Install Java OpenJDK 11 using Ansible**
 
-- Create an [Ansible Role](https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html "Ansible Role") named java using anisble-galaxy command in ansible directory:
-```shell
-ansible-galaxy init java
+
+- Install Java OpenJDK using ansible playbook "openjdk11_install.yml" by using apt module (Ubuntu) or yum module (CentOs)
 ```
-- In tasks directory under roles, edit the java role to install openjdk-11-jdk. yum is used instead of apt in case of using CentOS
-```yaml
-- name: Install Java OpenJDK 11
-  apt:
-    name: openjdk-11-jdk
-    update_cache: yes
-```
-- Deploy the installed java using ansible playbook "java_playbook.yml" by calling the java role
-```yaml
-  roles:
-    - ../roles/java
+## openjdk11_install.yml
+  tasks:
+
+  - name: Install Java OpenJDK 11
+    apt:
+      name: openjdk-11-jdk
+      update_cache: yes
 ```
 ## Summary 
 
 File  | Functionality
 -------------    | -------------
-util.py                | Python script to get information on Cpu, memory and disk utilization and save them in a Csv files under /opt 
-Content Cell     | Content Cell
-Content Cell     | Content Cell
+util.py          | Python script to get information on Cpu, memory and disk utilization and save them in a Csv files under /opt 
+setup_venv.yml     | Ansible playbook to install venv library and setup python 3 virtual environment
+venv_packages.yml     | Ansible playbook to install any needed python package for the project such as psutil
+clone_script.yml     | Ansible playbook to download the python script "util.py" from a github repo, run again for new commits
+schedule_script_ven.yml      | Ansible playbook to start cron scheduler and run the python script every 15 minutes 
+stop_schedule.yml     | Ansible playbook to stop cron scheduler from running the script
+linux_package.yml     | Ansible playbook to install a linux package by taking the package name as an argument
+openjdk11_install.yml     | Ansible playbook to install Java Open Jdk 11 on linux environment     
+
