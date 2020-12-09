@@ -1,0 +1,11 @@
+---
+- hosts: localhost
+  connection: local
+  vars:
+    package: "{{ pkg }}"
+
+  tasks:
+
+  - name: Install Linux Package
+    apt:
+      name: "{{ package }}"

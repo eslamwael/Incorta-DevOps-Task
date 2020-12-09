@@ -1,0 +1,17 @@
+---
+- hosts: localhost
+  connection: local
+  become: true
+
+  tasks:
+
+  - name: Start cron scheduler service
+    service:
+      name: cron
+      state: started
+
+  - name: Run script every 15 minutes
+    cron:
+      name: "schedule script"
+      minute: "*/15"
+      job: /etc/ansible/py_venv/bin/python3 /etc/ansible/playbooks/Python_script/util.py >> /opt/cron.log 2>&1

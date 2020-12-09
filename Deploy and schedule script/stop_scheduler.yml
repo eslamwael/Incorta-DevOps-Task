@@ -1,0 +1,11 @@
+---
+- hosts: localhost
+  connection: local
+  become: true
+
+  tasks:
+
+  - name: Stop cron scheduler service
+    service:
+      name: cron
+      state: stopped

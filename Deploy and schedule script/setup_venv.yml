@@ -1,0 +1,13 @@
+---
+- hosts: localhost
+  connection: local
+  become: true
+
+  tasks:
+
+  - name: Install the venv library
+    command: apt install python3-venv
+
+
+  - name: Create python 3 virtual environment "py_venv" on Ansible directory
+    command: python3 -m venv /etc/ansible/py_venv

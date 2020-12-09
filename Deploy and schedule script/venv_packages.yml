@@ -1,0 +1,11 @@
+---
+- hosts: localhost
+  connection: local
+  become: true
+
+  tasks:
+
+  - name: Install psutil on virtual environment
+    pip:
+      name: psutil
+      virtualenv: /etc/ansible/py_venv

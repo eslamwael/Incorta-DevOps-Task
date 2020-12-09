@@ -1,0 +1,15 @@
+---
+- hosts: localhost
+  connection: local
+  become: true
+
+  vars:
+    username: eslamwael
+    repo_name: Linux-untilization-Python-script
+
+  tasks:
+
+  - name: Download python script from Git Repo
+    git:
+      repo: https://github.com/{{ username }}/{{ repo_name }}.git
+      dest: /etc/ansible/playbooks/Python_script/
