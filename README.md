@@ -5,11 +5,35 @@ machine. We expect to have 3 CSVs  for ( CPU - Memory Usage - Disk space usage )
 
 - Using Ansible to do the following ( Deploy and schedule the above script - Install some Linux packages passed as parameters - Install Java OpenJDK 11)
 
-## Getting Started
+
+<!--ts-->
+   * [Getting Started](#getting-started)
+      * [Prerequisites](#prerequisites)
+   * [Requirement 1 - Record system resources utilization](#requirement-1-record-system-resources-utilization)
+   * [Installation](#installation)
+   * [Usage](#usage)
+      * [STDIN](#stdin)
+      * [Local files](#local-files)
+      * [Remote files](#remote-files)
+      * [Multiple files](#multiple-files)
+      * [Combo](#combo)
+      * [Auto insert and update TOC](#auto-insert-and-update-toc)
+      * [GitHub token](#github-token)
+      * [TOC generation with Github Actions](#toc-generation-with-github-actions)
+   * [Tests](#tests)
+   * [Dependency](#dependency)
+   * [Docker](#docker)
+     * [Local](#local)
+     * [Public](#public)
+<!--te-->
+
+Getting Started
+=================
 
 These tasks are done on a local machine for development and testing using Linux distribution ( Ubuntu 18.04 or CentOS 7 to match the company's environment )
 
-### Prerequisites
+Prerequisites
+-------------
 As we will see in the second requirement, all the prerequisites will be installed for hosts via Ansible playbooks.
 
 Packages on linux distribution:
@@ -21,7 +45,8 @@ Packages on linux distribution:
 Python packages on your python virtual environment:
 - *psutil : To retrieve information on system utilization*
 
-## Requirement 1:
+Requirement 1 - Record system resources utilization:
+==============
 **Python script *util.py* to automatically record system resources utilization on a Linux machine using [psutil python package](https://pypi.org/project/psutil/ "psutil python package")**
 
 **Exact steps of the script are the following:**
@@ -48,7 +73,12 @@ Output sample for MEM.csv:
 2020-12-08 00:35:02.228761,29.0
 2020-12-08 00:36:02.368104,29.7
 ```
-## Requirement 2.1:
+Requirement 2
+================
+
+Deply and Schedule Script
+-------------------------
+
 **Deploy and schedule the "util.py" python script to run every 15 minutes using Ansible configuration management tool**
 
 ### Approach: Create a project specific [Python Virtual Environment](https://docs.python.org/3/tutorial/venv.html "Python Virtual Environment") with only the required python packages. The script is run on the virtual environment, scheduled and deployed using five Ansible playbooks.
