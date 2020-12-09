@@ -13,7 +13,6 @@ machine. We expect to have 3 CSVs  for ( CPU - Memory Usage - Disk space usage )
    * [Requirement 2: "Using Ansible configuration tool"](#requirement-2-using-ansible-configuration-tool)
       * [Deploy and Schedule Script](#deploy-and-schedule-script)
       * [Install Linux packages passed as parameters](#install-linux-packages-passed-as-parameters)
-      * [Deploy and Schedule Script](#deploy-and-schedule-script)
       * [Install Java OpenJDK 11 on Linux environment](#install-Java-OpenJDK-11-on-linux-environment)
    * [Summary](#summary)
 <!--te-->
