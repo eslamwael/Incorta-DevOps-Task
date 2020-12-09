@@ -15,6 +15,8 @@ machine. We expect to have 3 CSVs  for ( CPU - Memory Usage - Disk space usage )
       * [Install Linux packages passed as parameters](#install-linux-packages-passed-as-parameters)
       * [Install Java OpenJDK 11 on Linux environment](#install-Java-OpenJDK-11-on-linux-environment)
    * [Summary](#summary)
+   * [Future improvement with Docker "Optional"](#future-improvement-with-docker-optional)
+   
 <!--te-->
 
 Getting Started
@@ -191,3 +193,27 @@ stop_schedule.yml     | Ansible playbook to stop cron scheduler from running the
 linux_package.yml     | Ansible playbook to install a linux package by taking the package name as an argument
 openjdk11_install.yml     | Ansible playbook to install Java Open Jdk 11 on linux environment     
 
+Future improvement with Docker "Optional"
+========================================
+- Docker can invoke PyPi "Python package manager" on build to produce a container image that has all of the project dependencies and the application using these dependencies.
+
+One way is to create a Dockerfile in your application’s root 
+```shell
+# set base image (Linux distribution)
+FROM python:3.7
+
+# set the working directory in the container
+WORKDIR /code
+
+# copy the file containting all python dependencies to the working directory
+COPY requirements.txt .
+
+# install dependencies
+RUN pip install -r requirements.txt
+
+# copy the content of the local src directory to the working directory
+COPY src/ .
+
+# command to run on container start
+CMD python ./index.py
+```
