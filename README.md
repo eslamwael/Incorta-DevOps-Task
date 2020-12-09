@@ -10,11 +10,10 @@ machine. We expect to have 3 CSVs  for ( CPU - Memory Usage - Disk space usage )
    * [Getting Started](#getting-started)
       * [Prerequisites](#prerequisites)
    * [Requirement 1: "Record system resources utilization"](#requirement-1-record-system-resources-utilization)
-   * [Installation](#installation)
-   * [Usage](#usage)
-      * [STDIN](#stdin)
-      * [Local files](#local-files)
-      * [Remote files](#remote-files)
+   * [Requirement 2: "Using Ansible configuration tool"](#requirement-2-using-ansible-configuration-tool)
+      * [Deploy and Schedule Script](#deploy-and-schedule-script)
+      * [Install Linux packages passed as parameters](#install-linux-packages-passed-as-parameters)
+      * [Deploy and Schedule Script](#deploy-and-schedule-script)
       * [Multiple files](#multiple-files)
       * [Combo](#combo)
       * [Auto insert and update TOC](#auto-insert-and-update-toc)
@@ -73,10 +72,10 @@ Output sample for MEM.csv:
 2020-12-08 00:35:02.228761,29.0
 2020-12-08 00:36:02.368104,29.7
 ```
-Requirement 2
+Requirement 2: "Using Ansible configuration tool"
 ================
 
-Deply and Schedule Script
+Deploy and Schedule Script
 -------------------------
 
 **Deploy and schedule the "util.py" python script to run every 15 minutes using Ansible configuration management tool**
@@ -153,8 +152,9 @@ Note that [Cron Ansible module](https://docs.ansible.com/ansible/latest/collecti
       state: stopped
 ```
 
-## Requirement 2.2:
-**Install some Linux packages passed as parameters using Ansible**
+Install Linux packages passed as parameters
+-------------------------------------------
+
 - Use Ansible playbook variables to take linux package name as an argument, then install it on "linux_package.yml" playbook using Ansible built-in packages manager such as [apt module](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/apt_module.html "apt module") in case of Ubuntu or [yum module](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/yum_module.html "yum module") in case of CentOS 
 
 ```yaml
