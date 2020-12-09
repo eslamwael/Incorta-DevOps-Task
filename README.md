@@ -70,13 +70,13 @@ Requirement 2: "Using Ansible configuration tool"
 Deploy and Schedule Script
 -------------------------
 
-**Deploy and schedule the "util.py" python script to run every 15 minutes using Ansible configuration management tool**
+**Deploy and schedule "util.py" python script to run every 15 minutes using Ansible configuration management tool**
 
-### Approach: Create a project specific [Python Virtual Environment](https://docs.python.org/3/tutorial/venv.html "Python Virtual Environment") with only the required python packages. The script is run on the virtual environment, scheduled and deployed using five Ansible playbooks.
+### Approach: Create a project specific [Python Virtual Environment](https://docs.python.org/3/tutorial/venv.html "Python Virtual Environment") with only the required python packages. The script is run on the virtual environment, scheduled and deployed using Ansible playbooks.
 
 **Exact steps:**
 
-- Install and create a python 3 virtual environment named "py_venv" on etc/ansible directory via "setup_venv.yml" playbook, apt is replaced with yum in case using CentOs 7
+- Install and create a python 3 virtual environment named "py_venv" on etc/ansible directory via "setup_venv.yml" playbook ( apt is replaced with yum in case of using CentOs 7 )
 ```yaml
 ## setup_venv.yml
   - name: Install the venv library
@@ -98,7 +98,7 @@ source py_venv/bin/activate
       name: psutil
       virtualenv: /etc/ansible/py_venv
 ```
-*Note: Although Virtual environment benefit is not clear here but in real projects it is used instead of local environment to help keep dependencies required by different projects separate by creating isolated python virtual environments for them -specially for site packages*
+*Note: Although Virtual environment benefit is not clear here. However, in real projects it is used instead of local environments to help keep dependencies required by different projects separate by creating isolated python virtual environments for them (specially for site-packages)*
 
 - Clone the script from a public GitHub repo that acts as a server/master to a local directory with [Git Ansible module](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/git_module.html "Git Ansible module")  via “clone_script” playbook. 
 ```yaml
@@ -113,7 +113,7 @@ source py_venv/bin/activate
       repo: https://github.com/{{ username }}/{{ repo_name }}.git
       dest: /etc/ansible/playbooks/Python_script/
 ```
-*Note: the benefit of using Git module that it gets the latest commit every time the task is run.*
+*Note: the benefit of using Git module that it gets the latest commit every time the task runs.*
 
 - Start cron scheduler then run the script on the virtual environment every 15 minutes via “schedule_script_venv” playbook, cron logs are saved in the /opt directory in case of scheduling errors
 ```yaml
