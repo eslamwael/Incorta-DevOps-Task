@@ -30,7 +30,7 @@ Python packages on your python virtual environment:
 3. Save and append results from "Step 2" as a csv file in /opt/ directory every time the script is run.
 4. Repeat "Steps 2 & 3" to get free memory & free disk spaces as percentages.
 
-Example: Getting percentages of used virtual memory in *MEM.csv* with the corresponding timestamp
+**Example: Getting percentages of used virtual memory in *MEM.csv* with the corresponding timestamp**
 ```python
 # psutil.virtual_memory().percent: returns the percentage of used memory
 mem_free_per = round((100 - psutil.virtual_memory().percent),2)
@@ -51,7 +51,7 @@ Output sample for MEM.csv:
 ## Requirement 2.1:
 **Deploy and schedule the "util.py" python script to run every 15 minutes using Ansible configuration management tool**
 
-### Approach: Create a project specific [Python Virtual Environment](https://docs.python.org/3/tutorial/venv.html "Python Virtual Environment") with only the required python packages. The script is run on the virtual environment, scheduled and deployed using five Ansible playbooks
+### Approach: Create a project specific [Python Virtual Environment](https://docs.python.org/3/tutorial/venv.html "Python Virtual Environment") with only the required python packages. The script is run on the virtual environment, scheduled and deployed using five Ansible playbooks.
 
 **Exact steps:**
 
@@ -77,6 +77,8 @@ source py_venv/bin/activate
       name: psutil
       virtualenv: /etc/ansible/py_venv
 ```
+*Note: Although Virtual environment benefit is not clear here but in real projects it is used instead of local environment to help keep dependencies required by different projects separate by creating isolated python virtual environments for them -specially for site packages*
+
 - Clone the script from a public GitHub repo that acts as a server/master to a local directory with [Git Ansible module](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/git_module.html "Git Ansible module")  via “clone_script” playbook. 
 ```yaml
 ## clone_script.yml
@@ -90,7 +92,7 @@ source py_venv/bin/activate
       repo: https://github.com/{{ username }}/{{ repo_name }}.git
       dest: /etc/ansible/playbooks/Python_script/
 ```
-*Note: the benifit of using Git module that it gets the latest pull request every time the task is run.*
+*Note: the benefit of using Git module that it gets the latest commit every time the task is run.*
 
 - Start cron scheduler then run the script on the virtual environment every 15 minutes via “schedule_script_venv” playbook, cron logs are saved in the /opt directory in case of scheduling errors
 ```yaml
