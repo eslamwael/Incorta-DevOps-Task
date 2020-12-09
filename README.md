@@ -57,6 +57,7 @@ Output sample for MEM.csv:
 
 - Install and create a python 3 virtual environment named "py_venv" on etc/ansible directory via "setup_venv.yml" playbook, apt is replaced with yum in case using CentOs 7
 ```yaml
+## setup_venv.yml
   - name: Install the venv library
     command: apt install python3-venv
 
@@ -70,6 +71,7 @@ source py_venv/bin/activate
 - Install any needed python libraries such as psutil on the installed virtual environment via "venv_packages.yml" playbook
 
 ```yaml
+## venv_packages.yml
   - name: Install psutil on virtual environment
     pip:
       name: psutil
@@ -77,6 +79,7 @@ source py_venv/bin/activate
 ```
 - Clone the script from a public GitHub repo that acts as a server/master to a local directory with [Git Ansible module](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/git_module.html "Git Ansible module")  via “clone_script” playbook. 
 ```yaml
+## clone_script.yml
   vars:
     username: eslamwael
     repo_name: Linux-untilization-Python-script
@@ -108,7 +111,7 @@ Note that [Cron Ansible module](https://docs.ansible.com/ansible/latest/collecti
 */15 * * * * /etc/ansible/py_venv/bin/python3 /etc/ansible/playbooks/Python_script/util.py >> /opt/cron.log 2>&1
 ```
 
-- Master may need to shut down the scheduler for some or all hosts, so additional playbook is added to stop the cron scheduler from running
+- Master may need to shut down the scheduler for some or all hosts, so additional playbook "stop_scheduler.yml" is added to stop the cron scheduler from running
 ```yaml
   - name: Stop cron scheduler service
     service:
