@@ -9,7 +9,7 @@ machine. We expect to have 3 CSVs  for ( CPU - Memory Usage - Disk space usage )
 <!--ts-->
    * [Getting Started](#getting-started)
       * [Prerequisites](#prerequisites)
-   * [Requirement 1: Record system resources utilization](#requirement-1-:-record-system-resources-utilization)
+   * [Requirement 1: "Record system resources utilization"](#requirement-1-record-system-resources-utilization)
    * [Installation](#installation)
    * [Usage](#usage)
       * [STDIN](#stdin)
@@ -45,7 +45,7 @@ Packages on linux distribution:
 Python packages on your python virtual environment:
 - *psutil : To retrieve information on system utilization*
 
-Requirement 1: Record system resources utilization:
+Requirement 1: "Record system resources utilization"
 ==============
 **Python script *util.py* to automatically record system resources utilization on a Linux machine using [psutil python package](https://pypi.org/project/psutil/ "psutil python package")**
 
