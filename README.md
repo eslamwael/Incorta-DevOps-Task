@@ -5,7 +5,7 @@ machine. We expect to have 3 CSVs  for ( CPU - Memory Usage - Disk space usage )
 
 - Using Ansible to do the following ( Deploy and schedule the above script - Install some Linux packages passed as parameters - Install Java OpenJDK 11)
 
-
+## Table of contents
 <!--ts-->
    * [Getting Started](#getting-started)
       * [Prerequisites](#prerequisites)
