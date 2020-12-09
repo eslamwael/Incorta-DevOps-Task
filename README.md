@@ -14,16 +14,8 @@ machine. We expect to have 3 CSVs  for ( CPU - Memory Usage - Disk space usage )
       * [Deploy and Schedule Script](#deploy-and-schedule-script)
       * [Install Linux packages passed as parameters](#install-linux-packages-passed-as-parameters)
       * [Deploy and Schedule Script](#deploy-and-schedule-script)
-      * [Multiple files](#multiple-files)
-      * [Combo](#combo)
-      * [Auto insert and update TOC](#auto-insert-and-update-toc)
-      * [GitHub token](#github-token)
-      * [TOC generation with Github Actions](#toc-generation-with-github-actions)
-   * [Tests](#tests)
-   * [Dependency](#dependency)
-   * [Docker](#docker)
-     * [Local](#local)
-     * [Public](#public)
+      * [Install Java OpenJDK 11 on Linux environment](#install-Java-OpenJDK-11-on-linux-environment)
+   * [Summary](#summary)
 <!--te-->
 
 Getting Started
@@ -172,9 +164,9 @@ Install Linux packages passed as parameters
 ```shell
 sudo ansible-playbook packages_playbook.yml --extra-vars "pkg=apache2"
 ```
-## Requirement 2.3:
-**Install Java OpenJDK 11 using Ansible**
 
+Install Java OpenJDK 11 on Linux environment
+--------------------------------------------
 
 - Install Java OpenJDK using ansible playbook "openjdk11_install.yml" by using apt module (Ubuntu) or yum module (CentOs)
 ```
@@ -186,7 +178,8 @@ sudo ansible-playbook packages_playbook.yml --extra-vars "pkg=apache2"
       name: openjdk-11-jdk
       update_cache: yes
 ```
-## Summary 
+Summary 
+=======
 
 File  | Functionality
 -------------    | -------------
