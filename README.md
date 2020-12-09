@@ -9,7 +9,7 @@ machine. We expect to have 3 CSVs  for ( CPU - Memory Usage - Disk space usage )
 <!--ts-->
    * [Getting Started](#getting-started)
       * [Prerequisites](#prerequisites)
-   * [Requirement 1 - Record system resources utilization](#requirement-1-record-system-resources-utilization)
+   * [Requirement 1 - Record system resources utilization](#requirement -1- record-system-resources-utilization)
    * [Installation](#installation)
    * [Usage](#usage)
       * [STDIN](#stdin)
