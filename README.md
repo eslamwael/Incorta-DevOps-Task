@@ -75,11 +75,20 @@ source py_venv/bin/activate
       name: psutil
       virtualenv: /etc/ansible/py_venv
 ```
-- Clone the script from a GitHub repoy that acts as a server/master to a local directory via “clone_playbook.yml” playbook
+- Clone the script from a public GitHub repo that acts as a server/master to a local directory with [Git Ansible module](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/git_module.html "Git Ansible module")  via “clone_script” playbook. 
 ```yaml
-  - name: Clone python script from Git Repo
-    command: sudo git clone https://github.com/*.git /etc/ansible/playbooks/Python_script/
+  vars:
+    username: eslamwael
+    repo_name: Linux-untilization-Python-script
+
+  tasks:
+  - name: Download python script from Git
+    git:
+      repo: https://github.com/{{ username }}/{{ repo_name }}.git
+      dest: /etc/ansible/playbooks/Python_script/
 ```
+*Note: the benifit of using Git module that it gets the latest pull request every time the task is run.*
+
 - Start cron scheduler then run the script on the virtual environment every 15 minutes via “schdule_script_venv.yml” playbook, cron logs are saved in the /opt directory in case of scheduling errors
 ```yaml
   - name: Start cron scheduler service
