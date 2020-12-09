@@ -1,9 +1,9 @@
 # Incorta-DevOps-Task
 
 - Track resource utilization over time. It’s required to have a script to automatically record system resources utilization on a Linux
-machine. We expect to have 3 CSVs  for ( CPU - Memory Usage - Disk space usage ) files under /opt/ directory.
+machine. The scipt creates 3 CSV files  for (CPU - Memory Usage - Disk space usage) under /opt/ directory.
 
-- Using Ansible to do the following ( Deploy and schedule the above script - Install some Linux packages passed as parameters - Install Java OpenJDK 11)
+- Using Ansible to do the following (Deploy and schedule the above script - Install some Linux packages passed as parameters - Install Java OpenJDK 11)
 
 ## Table of contents
 <!--ts-->
@@ -15,12 +15,13 @@ machine. We expect to have 3 CSVs  for ( CPU - Memory Usage - Disk space usage )
       * [Install Linux packages passed as parameters](#install-linux-packages-passed-as-parameters)
       * [Install Java OpenJDK 11 on Linux environment](#install-java-openJDK-11-on-linux-environment)
    * [Summary](#summary) 
+   * [Future work: Visualize system utilization](#future-work-visualize-system-utilization)
 <!--te-->
 
 Getting Started
 =================
 
-These tasks are done on a local machine for development and testing using Linux distribution ( Ubuntu 18.04 or CentOS 7 to match the company's environment )
+These tasks are done on a local host for development and testing using Linux distribution (Ubuntu 18.04 or CentOS 7)
 
 Prerequisites
 -------------
@@ -190,3 +191,11 @@ schedule_script_ven.yml      | Ansible playbook to start cron scheduler and run 
 stop_schedule.yml     | Ansible playbook to stop cron scheduler from running the script
 linux_package.yml     | Ansible playbook to install a linux package by taking the package name as an argument
 openjdk11_install.yml     | Ansible playbook to install Java Open Jdk 11 on linux environment     
+
+Future work: Visualize system utilization
+=========================================
+
+- Creating a python script with a visualization library such as matplotlib to create a static interactive graphs for CPU, memory and disk usages over time.
+- This can be done by importing the three generated CSV files in the /opt directory
+
+###    Thank you
