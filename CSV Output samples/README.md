@@ -1,0 +1,1 @@
+- The three CSVs files are saved under /opt/ directory in the python script.
