@@ -92,8 +92,9 @@ source py_venv/bin/activate
 ```
 *Note: the benifit of using Git module that it gets the latest pull request every time the task is run.*
 
-- Start cron scheduler then run the script on the virtual environment every 15 minutes via “schdule_script_venv.yml” playbook, cron logs are saved in the /opt directory in case of scheduling errors
+- Start cron scheduler then run the script on the virtual environment every 15 minutes via “schedule_script_venv” playbook, cron logs are saved in the /opt directory in case of scheduling errors
 ```yaml
+## schedule_script_venv.yml
   - name: Start cron scheduler service
     service:
       name: cron
@@ -111,8 +112,9 @@ Note that [Cron Ansible module](https://docs.ansible.com/ansible/latest/collecti
 */15 * * * * /etc/ansible/py_venv/bin/python3 /etc/ansible/playbooks/Python_script/util.py >> /opt/cron.log 2>&1
 ```
 
-- Master may need to shut down the scheduler for some or all hosts, so additional playbook "stop_scheduler.yml" is added to stop the cron scheduler from running
+- Master may need to shut down the scheduler for some or all hosts, so additional playbook "stop_scheduler" is added to stop the cron scheduler from running
 ```yaml
+## stop_scheduler.yml
   - name: Stop cron scheduler service
     service:
       name: cron
