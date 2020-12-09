@@ -195,7 +195,7 @@ openjdk11_install.yml     | Ansible playbook to install Java Open Jdk 11 on linu
 Future work: Visualize system utilization
 =========================================
 
-- Creating a python script with a visualization library such as "matplotlib" or "plotly" to create a static interactive graphs for CPU, memory and disk usages over time.
-- This can be done by importing the three generated CSV files in the /opt directory
+- Creating a python script with a visualization library such as [matplotlib](https://matplotlib.org/) or [plotly](https://plotly.com/python/) to create a static interactive graphs for CPU, memory and disk usages over time.
+- This can be done by importing the three generated CSV files in from /opt directory
 
 ###    Thank you
